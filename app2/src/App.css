@@ -1,0 +1,129 @@
+
+.nvbar {
+
+  width: fit-content;
+  border: 1px solid;
+  border-radius: 10px;
+  background-color: white;
+  height: fit-content;  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+
+.navbrBtn {
+  width: 100px;
+  color: rgb(133, 133, 133) !important;
+  height: 70px !important;
+  border-right: 1px solid !important;
+  border-radius: 0px !important;
+  text-decoration: none !important;
+  text-align: center !important;
+  font-size: 22px !important;
+}
+.navbrBtn:hover {
+  color: purple !important;
+  background-color: rgb(207, 207, 207) !important;
+}
+.navbrBtn.active {
+  background-color: rgb(221, 195, 211) !important;
+  color: purple !important;
+
+}
+
+.parent {
+  display: flex;
+  justify-content: center;
+  height: 100%;
+  min-height: 100vh;
+  background-color: rgb(71, 71, 71);
+}
+
+.btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50% !important;
+  min-width: 40px !important;
+  width: 40px !important;
+  height: 40px !important;
+  max-height: 40px !important;
+  background-color: white;
+}
+.btn:hover {
+  background-color: gray !important;
+
+}
+
+.todoContainer {
+  background-color: teal;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 50%;
+  gap: 25px;
+  border-radius: 15px;
+  min-width: 400px;
+  margin-top: 100px;
+  margin-bottom: 50px;
+  height: fit-content;
+}
+
+.task {
+  width: 95%;
+  padding: 15px;
+  border-radius: 5px;
+  color: white;
+  background: #333;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  height: 70px;         /* default */
+  overflow: hidden;     /* hides extra content if needed */
+}
+
+.task:hover {
+  height: 100px;        /* grows taller */
+  background: #444;     /* optional effect */
+}
+
+.snkBar{
+  background-color: green !important;
+  font-size: 25px !important;
+  text-align: center !important;
+  margin: 0 50px !important;
+}
+
+.poperContainer {
+  background-color: rgba(0, 0, 0, 0.541);
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+}
+.poperContent {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: white;
+  border-radius: 15px;
+  width: 45%;
+  min-width: 400px;
+  padding: 20px 10px;
+}
+
+input {
+  font-size: 22px;
+  padding: 5px;
+  border: none;
+  border-bottom: 1px solid;
+}
+input:focus {
+  border: none;
+}
+
