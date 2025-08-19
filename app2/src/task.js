@@ -11,16 +11,13 @@ import { useTheme } from "@mui/material/styles";
 export function Task({setTaskDone, editTask, deleteTask}){
     let task = useContext(taskContext);
     let bgColor =  task.status === "done" ? 'green': 'white';
-    let textColor =  task.status === "done" ? 'white': 'green';
-    // console.log("bgColor: ", bgColor)
-    // console.log("task: ", task)
+    let textColor =  task.status === "done" ? 'white': '#8bc34a';
 
     const primary = useTheme().palette.primary;
 
     let nvbar = document.querySelector('.nvbar');
     let nvbarBtns = document.querySelectorAll('.nvbar Button');
     if (nvbar){
-        
         nvbar.addEventListener("click", (e) => {
             if (e.target.tagName === "BUTTON") {
                 nvbarBtns.forEach(element => {
@@ -48,13 +45,15 @@ export function Task({setTaskDone, editTask, deleteTask}){
                     </Grid>
                 </Grid>
                 <Grid display="flex" alignItems="center" justifyContent="flex-end" gap='8px' size={4}>
-                    <Button onClick={() => setTaskDone(task.id)} className="btn done" style={{backgroundColor: bgColor, color: textColor, border: '1px solid green'}}>
+                    <Button onClick={() => setTaskDone(task.id)} className="btn done" 
+                        style={{backgroundColor: bgColor, color: textColor, border: '2px solid #8bc34a'}}>
                         <CheckOutlinedIcon ></CheckOutlinedIcon >
                     </Button>
-                    <Button onClick={() => editTask(task.id)} className="btn edit" style={{backgroundColor: 'white', border: '1px solid cyan'}}>
-                        <EditOutlinedIcon color="action"></EditOutlinedIcon>
+                    <Button onClick={() => editTask(task.id)} className="btn edit"
+                        style={{backgroundColor: 'white', border: '2px solid #2f8bd6ff', color: '#2f8bd6ff'}}>
+                        <EditOutlinedIcon ></EditOutlinedIcon>
                     </Button>
-                    <Button onClick={() => deleteTask(task.id)} className="btn delete" style={{backgroundColor: 'white', border: '1px solid red'}}>
+                    <Button onClick={() => deleteTask(task.id)} className="btn delete" style={{backgroundColor: 'white', border: '2px solid red'}}>
                         <DeleteOutlinedIcon color="error"></DeleteOutlinedIcon>
                     </Button>
                 </Grid>

@@ -7,7 +7,7 @@ export function SnackBar({open, message, handleClose}){
 
     let action = (<TaskAltIcon style={{color: 'white', fontSize: '35px'}}/>)
     return (
-        <Snackbar
+        <Snackbar dir='ltr'
             open={open}
             autoHideDuration={3000}
             onClose={handleClose}

@@ -45,11 +45,7 @@ export function TasksList({status}){
                     fontSize: "25px",
                     }
                 }}
-                label="العنوان"
-                defaultValue={task.name}
-                size="medium"
-                variant="standard"
-                id="title"
+                label="العنوان" defaultValue={task.name} size="medium" variant="standard" id="title"
             />
             <TextField
                 sx={{
@@ -60,22 +56,19 @@ export function TasksList({status}){
                     fontSize: "25px",
                     }
                 }}
-                label="التفاصيل"
-                defaultValue={task.detils}
-                variant="standard"
-                id="detils"
+                label="التفاصيل" defaultValue={task.detils} variant="standard" id="detils"
             />
-            <div style={{width: "95%", display: 'flex', justifyContent: 'flex-end', padding: '10px'}}>
-                <Button style={{color: "purple", fontSize: '20px'}} 
-                    onClick={popUpHandle}>
+            <div style={{width: "100%", display: 'flex', justifyContent: 'flex-end', marginTop: "10px"}}>
+                <Button style={{color: "rgb(165, 63, 248)", fontSize: '20px'}} 
+                    onClick={popUpHandle} sx={{"&:hover": {backgroundColor: "rgba(165, 63, 248, 0.6)",color: 'white !important'}}}>
                     إلغاء
                 </Button>
-                <Button style={{color: "purple", fontSize: '20px'}} 
+                <Button style={{marginRight: '5px', color: "rgba(91, 187, 27, 0.99)", fontSize: '20px'}} 
                     onClick={()=>{
                         let title = document.getElementById('title').value
                         let detils = document.getElementById('detils').value
-                        console.log("title: ",title)
-                        console.log(title.value)
+                        if (!title)
+                            return
                         setTasks(tasks.map((task) => {
                             if (task.id === taskId){
                                 task.name = title
@@ -85,7 +78,8 @@ export function TasksList({status}){
                         }))
                         popUpHandle()
                         infoHandelClick("تم التعديل بنجاح")
-                    }}>
+                    }}
+                    sx={{"&:hover": {backgroundColor: "rgba(91, 187, 27, 0.7)",color: 'white !important'}}}>
                     تعديل
                 </Button>
             </div>
@@ -94,14 +88,15 @@ export function TasksList({status}){
     }
     function deleteTask(taskId){
         let elem = (<>
-            <h3>هل أنت متأكيد من رغبة في جذف هذه المهمة؟</h3>
-            <h4>بمجرد حذف المهمة لن تتمكن من إسترجاعها</h4>
-            <div style={{width: "95%", display: 'flex', justifyContent: 'flex-end', padding: '10px'}}>
-                <Button style={{color: "purple", fontSize: '20px'}} 
-                    onClick={popUpHandle}>
+            <h2>هل أنت متأكد من رغبة في حذف هذه المهمة؟</h2>
+            <h4 style={{color: 'gray'}}>بمجرد حذف المهمة لن تتمكن من إسترجاعها</h4>
+            <div  style={{width: "100%", display: 'flex', justifyContent: 'flex-end'}}>
+                <Button style={{color: "rgb(165, 63, 248)", fontSize: '20px'}} 
+                    onClick={popUpHandle} sx={{"&:hover": {backgroundColor: "rgba(165, 63, 248, 0.6)",color: 'white !important'}}}>
                     إلغاء
                 </Button>
-                <Button style={{color: "purple", fontSize: '20px'}} 
+                <Button sx={{"&:hover": {backgroundColor: "rgba(241, 25, 25, 0.6)", color: 'white !important'}}}  
+                    style={{color: "rgba(241, 25, 25, 0.8)", marginRight: '5px', fontSize: '20px'}} 
                     onClick={()=>{
                         setTasks(tasks.filter((task) => {
                             return task.id !== taskId
@@ -125,10 +120,13 @@ export function TasksList({status}){
                     <Task setTaskDone={setTaskDone} editTask={editTask} deleteTask={deleteTask}/>
                 </taskContext.Provider>
             )
+        return <></>
     } )
 
     function addTask(){
-        let taskName = document.getElementById("newTask").value;
+        let element = document.getElementById("newTask")
+        let taskName = element.value;
+        element.value = ""
         console.log("Name: ",taskName)
         if (taskName)
             setTasks([...tasks, {id: tasks[tasks.length-1].id+1, name: taskName, status: 'todo', deadline: ""}]);
@@ -149,8 +147,10 @@ export function TasksList({status}){
                     padding: "0px 5px"
                 }}/>
             </Grid>
-            <Grid onClick={addTask} size={4} style={{ backgroundColor: 'maroon', borderRadius: '6px', padding: "0px"}}>
-                <Button style={{color: 'white', padding: "10px", width: '100%', height: '100%', textAlign: "center", fontSize:"25px"}}>إضافة</Button>
+            <Grid onClick={addTask} size={4} style={{ borderRadius: '6px', padding: "0px"}}>
+                <Button  variant="contained" sx={{"&:hover": {backgroundColor: "rgb(104, 17, 17) !important"}}}
+                    style={{color: 'white', padding: "10px", width: '100%', height: '100%',
+                    backgroundColor: 'maroon', textAlign: "center", fontSize:"25px"}}>إضافة</Button>
             </Grid>
         </Grid>
     </div>

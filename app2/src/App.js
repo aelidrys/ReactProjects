@@ -28,7 +28,7 @@ function App() {
     setPopOpen((o) => {return !o});
   };
   return (
-    <div className="parent">
+    <div className="parent" dir='rtl'>
       <handleClickContext.Provider value={{infoHandelClick: informHandleClick, popUpHandle :popUpHandleClick}}>
         <TodoBord />
 

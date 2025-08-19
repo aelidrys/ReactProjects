@@ -12,7 +12,7 @@ export function TodoBord(){
         <hr style={{width: "100%"}}></hr>
         <div className="nvbar">
             <Link to='/tasks/all'>
-                <Button   className='navbrBtn'>
+                <Button   className='navbrBtn active'>
                     الكل
                 </Button>
             </Link>
@@ -22,7 +22,7 @@ export function TodoBord(){
                 </Button>
             </Link>
             <Link to="/tasks/todo">
-                <Button className='navbrBtn active'  style={{}}>
+                <Button className='navbrBtn '  style={{}}>
                     غير منجز
                 </Button>
             </Link>
