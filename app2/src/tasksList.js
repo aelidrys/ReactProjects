@@ -2,9 +2,9 @@ import Grid from "@mui/material/Grid"
 import Stack from "@mui/material/Stack"
 import { useState } from "react";
 import Button from "@mui/material/Button";
-import { taskContext } from "./taskContext";
+// import { taskContext } from "./taskContext";
 import { Task } from "./task";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { handleClickContext } from "./taskContext";
 import TextField from "@mui/material/TextField";
 
@@ -21,21 +21,31 @@ let intial_tasks = [
 
 export function TasksList({status}){
     let [tasks, setTasks] = useState(intial_tasks)
+    let [taskTitle, setTaskTitle] = useState('')
     let {infoHandelClick, popUpHandle} = useContext(handleClickContext);
 
+    useEffect(() => {
+        let storedTasks = JSON.parse(localStorage.getItem('tasks')) ?? intial_tasks;
+        console.log("tasks", storedTasks)
+        setTasks(storedTasks)
+    }, [])
+
+
     function setTaskDone(taskId){
-        infoHandelClick("تم التعديل بنجاح")
-        setTasks(tasks.map((task) => {
+        let updatedTasks = tasks.map((task) => {
             if (task.id === taskId)
                 task.status = task.status === "todo" ? "done": "todo";
             return task
-        }))
+        })
+        setTasks(updatedTasks)
+        localStorage.setItem("tasks", JSON.stringify(updatedTasks));
+        infoHandelClick("تم التعديل بنجاح")
     }
     function editTask(taskId){
         let task = tasks.find((element) => element.id===taskId)
-        console.log(taskId)
-        console.log(task)
+
         let elem = (<>
+            <h2 style={{width:'100%', textAlign: 'center'}}>تعديل المهمة </h2>
             <TextField
                 sx={{
                     "& .MuiInputBase-root": {
@@ -49,6 +59,7 @@ export function TasksList({status}){
             />
             <TextField
                 sx={{
+                    marginTop: '10px',
                     "& .MuiInputBase-root": {
                     fontSize: "25px",
                     },
@@ -69,13 +80,15 @@ export function TasksList({status}){
                         let detils = document.getElementById('detils').value
                         if (!title)
                             return
-                        setTasks(tasks.map((task) => {
+                        let updatedTasks = tasks.map((task) => {
                             if (task.id === taskId){
                                 task.name = title
                                 task.detils = detils
                             }
                             return task
-                        }))
+                        })
+                        setTasks(updatedTasks)
+                        localStorage.setItem("tasks", JSON.stringify(updatedTasks));
                         popUpHandle()
                         infoHandelClick("تم التعديل بنجاح")
                     }}
@@ -98,9 +111,9 @@ export function TasksList({status}){
                 <Button sx={{"&:hover": {backgroundColor: "rgba(241, 25, 25, 0.6)", color: 'white !important'}}}  
                     style={{color: "rgba(241, 25, 25, 0.8)", marginRight: '5px', fontSize: '20px'}} 
                     onClick={()=>{
-                        setTasks(tasks.filter((task) => {
-                            return task.id !== taskId
-                        }))
+                        let updatedTasks = tasks.filter((task) => {return task.id !== taskId})
+                        setTasks(updatedTasks)
+                        localStorage.setItem("tasks", JSON.stringify(updatedTasks));
                         popUpHandle()
                         infoHandelClick("تم الحدف بنجاح")
                     }}>
@@ -116,41 +129,39 @@ export function TasksList({status}){
     let tastsList = tasks.map((task) => {
         if (task.status === status || status === "any")
             return (
-                <taskContext.Provider key={task.id}  value={task}>
-                    <Task setTaskDone={setTaskDone} editTask={editTask} deleteTask={deleteTask}/>
-                </taskContext.Provider>
+                <Task key={task.id} task={task} setTaskDone={setTaskDone} editTask={editTask} deleteTask={deleteTask}/>
             )
         return <></>
     } )
 
     function addTask(){
-        let element = document.getElementById("newTask")
-        let taskName = element.value;
-        element.value = ""
-        console.log("Name: ",taskName)
-        if (taskName)
-            setTasks([...tasks, {id: tasks[tasks.length-1].id+1, name: taskName, status: 'todo', deadline: ""}]);
+        console.log("Name: ",taskTitle)
+        if (taskTitle){
+            let updatedTasks = [...tasks, {id: tasks[tasks.length-1].id+1, name: taskTitle, status: 'todo', deadline: ""}];
+            setTasks(updatedTasks);
+            localStorage.setItem("tasks", JSON.stringify(updatedTasks));
+        }
     }
 
 
     return (
-    <div dir='rtl' style={{width: "100%",}}>
-        <Stack spacing={3}>
+    <div dir='rtl' style={{width: "100%",}} >
+        <Stack spacing={3} style={{}} className="tasksContainer" >
             {tastsList}
         </Stack>
         <Grid container spacing={4} style={{marginTop: '20px'}}>
-            <Grid size={8} style={{}}>
+            <Grid size={8} style={{borderRadius: '16px'}}>
                 <input id="newTask" type="text" placeholder="عنوان المهمة" style={{
-                    border: '1px solid black',
+                    border: '1px solid black', borderRadius: '6px',
                     width: "100%", height: "100%", 
                     color: 'balck', fontSize:"25px",
-                    padding: "0px 5px"
-                }}/>
+                    padding: "0px 8px"
+                }} onChange={(e) => {setTaskTitle(e.target.value)}}/>
             </Grid>
             <Grid onClick={addTask} size={4} style={{ borderRadius: '6px', padding: "0px"}}>
-                <Button  variant="contained" sx={{"&:hover": {backgroundColor: "rgb(104, 17, 17) !important"}}}
+                <Button disabled={taskTitle.length === 0} color="add"  variant="contained" sx={{"&:hover": {backgroundColor: "rgb(104, 17, 17)"}}}
                     style={{color: 'white', padding: "10px", width: '100%', height: '100%',
-                    backgroundColor: 'maroon', textAlign: "center", fontSize:"25px"}}>إضافة</Button>
+                    textAlign: "center", fontSize:"25px"}}>إضافة</Button>
             </Grid>
         </Grid>
     </div>

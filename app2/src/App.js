@@ -32,7 +32,7 @@ function App() {
       <handleClickContext.Provider value={{infoHandelClick: informHandleClick, popUpHandle :popUpHandleClick}}>
         <TodoBord />
 
-      <PopUp open={popOpen}>{popContent}</PopUp>
+        <PopUp open={popOpen}>{popContent}</PopUp>
 
         <SnackBar open={open} message={message} handleClose={handleClose}/>
       </handleClickContext.Provider>

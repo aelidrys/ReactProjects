@@ -1,42 +1,42 @@
 import './App.css';
-import { Link, Route, Routes } from 'react-router-dom';
-import Button from '@mui/material/Button';
 import { TasksList } from './tasksList.js'
+import { useState } from 'react';
+import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
+import ToggleButton from '@mui/material/ToggleButton';
 
 
 
 export function TodoBord(){
+    let [status, setStatus] = useState("any")
+
+    function changeStatus(e){
+        console.log("Value: ",e.target.value)
+        setStatus(e.target.value)
+    }
     return (
     <div  className='todoContainer'>
         <h1 style={{fontSize: "50px", height: "60px", margin: "0", padding: "none"}}>مهامي</h1>
         <hr style={{width: "100%"}}></hr>
         <div className="nvbar">
-            <Link to='/tasks/all'>
-                <Button   className='navbrBtn active'>
+            <ToggleButtonGroup className='nvbar'
+                color="primary"
+                value={status}
+                exclusive
+                onChange={changeStatus}
+                aria-label=""
+            >
+                <ToggleButton className='navbrBtn' value="any">
                     الكل
-                </Button>
-            </Link>
-            <Link to='/tasks/done'>
-                <Button  className='navbrBtn' style={{}}>
-                    منجز
-                </Button>
-            </Link>
-            <Link to="/tasks/todo">
-                <Button className='navbrBtn '  style={{}}>
-                    غير منجز
-                </Button>
-            </Link>
+                </ToggleButton>
+                <ToggleButton className='navbrBtn' value="done">
+                    المنجز
+                </ToggleButton>
+                <ToggleButton className='navbrBtn' value="todo">
+                    الغير منجز
+                </ToggleButton>
+            </ToggleButtonGroup>
         </div>
-
-        <Routes>
-            <Route path='/' element={<TasksList status={'any'}/>}/>
-            <Route path='/tasks'>
-            <Route path='all' element={<TasksList status={'any'}/>}/>
-            <Route path='done' element={<TasksList status={'done'}/>}/>
-            <Route path='todo' element={<TasksList status={'todo'}/>}/>
-            </Route>
-            <Route path='*' element={<h2 style={{textAlign: "center", marginTop: '50px'}}>404 Page Not Found</h2>}/>
-        </Routes>
+        <TasksList status={status} />
     </div>
     )
 }
