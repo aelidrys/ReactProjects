@@ -10,7 +10,6 @@ export function TodoBord(){
     let [status, setStatus] = useState("any")
 
     function changeStatus(e){
-        console.log("Value: ",e.target.value)
         setStatus(e.target.value)
     }
     return (

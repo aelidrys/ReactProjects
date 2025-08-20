@@ -23,7 +23,6 @@ function App() {
   let [popContent, setPopContent] = useState((<></>))
   const [popOpen, setPopOpen] = useState(null);
   const popUpHandleClick = (element) => {
-    console.log("element: ",element)
     setPopContent(element)
     setPopOpen((o) => {return !o});
   };

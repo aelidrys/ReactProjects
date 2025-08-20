@@ -26,7 +26,6 @@ export function TasksList({status}){
 
     useEffect(() => {
         let storedTasks = JSON.parse(localStorage.getItem('tasks')) ?? intial_tasks;
-        console.log("tasks", storedTasks)
         setTasks(storedTasks)
     }, [])
 
@@ -135,10 +134,10 @@ export function TasksList({status}){
     } )
 
     function addTask(){
-        console.log("Name: ",taskTitle)
         if (taskTitle){
             let updatedTasks = [...tasks, {id: tasks[tasks.length-1].id+1, name: taskTitle, status: 'todo', deadline: ""}];
             setTasks(updatedTasks);
+            setTaskTitle("")
             localStorage.setItem("tasks", JSON.stringify(updatedTasks));
         }
     }
@@ -150,8 +149,8 @@ export function TasksList({status}){
             {tastsList}
         </Stack>
         <Grid container spacing={4} style={{marginTop: '20px'}}>
-            <Grid size={8} style={{borderRadius: '16px'}}>
-                <input id="newTask" type="text" placeholder="عنوان المهمة" style={{
+            <Grid size={8}  style={{borderRadius: '16px'}}>
+                <input value={taskTitle} id="newTask" type="text" placeholder="عنوان المهمة" style={{
                     border: '1px solid black', borderRadius: '6px',
                     width: "100%", height: "100%", 
                     color: 'balck', fontSize:"25px",

@@ -26,7 +26,7 @@ export function Task({task, setTaskDone, editTask, deleteTask}){
                         {task.name} 
                     </Grid>
                     <Grid  size={12} >
-                        <h4 style={{paddingTop: "8px", margin: '0px'}}>{task.detils}</h4>
+                        <h4 style={{paddingTop: "4px", margin: '0px'}}>{task.detils}</h4>
                     </Grid>
                 </Grid>
                 <Grid display="flex" alignItems="center" justifyContent="flex-end" gap='8px' size={4}>
