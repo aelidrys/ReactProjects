@@ -1,6 +1,6 @@
 import Grid from "@mui/material/Grid"
 import Stack from "@mui/material/Stack"
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import Button from "@mui/material/Button";
 // import { taskContext } from "./taskContext";
 import { Task } from "./task";
@@ -22,7 +22,7 @@ let intial_tasks = [
 export function TasksList({status}){
     let [tasks, setTasks] = useState(intial_tasks)
     let [taskTitle, setTaskTitle] = useState('')
-    let {infoHandelClick, popUpHandle} = useContext(handleClickContext);
+    let {showToast, popUpHandle} = useContext(handleClickContext);
 
     useEffect(() => {
         let storedTasks = JSON.parse(localStorage.getItem('tasks')) ?? intial_tasks;
@@ -38,7 +38,7 @@ export function TasksList({status}){
         })
         setTasks(updatedTasks)
         localStorage.setItem("tasks", JSON.stringify(updatedTasks));
-        infoHandelClick("تم التعديل بنجاح")
+        showToast("تم تعديل المهمة بنجاح")
     }
     function editTask(taskId){
         let task = tasks.find((element) => element.id===taskId)
@@ -89,7 +89,7 @@ export function TasksList({status}){
                         setTasks(updatedTasks)
                         localStorage.setItem("tasks", JSON.stringify(updatedTasks));
                         popUpHandle()
-                        infoHandelClick("تم التعديل بنجاح")
+                        showToast("تم تعديل المهمة بنجاح")
                     }}
                     sx={{"&:hover": {backgroundColor: "rgba(91, 187, 27, 0.7)",color: 'white !important'}}}>
                     تعديل
@@ -114,7 +114,7 @@ export function TasksList({status}){
                         setTasks(updatedTasks)
                         localStorage.setItem("tasks", JSON.stringify(updatedTasks));
                         popUpHandle()
-                        infoHandelClick("تم الحدف بنجاح")
+                        showToast("تم حذف المهمة بنجاح")
                     }}>
                     حذف المهمة
                 </Button>
@@ -125,13 +125,29 @@ export function TasksList({status}){
     }
 
 
-    let tastsList = tasks.map((task) => {
-        if (task.status === status || status === "any")
-            return (
-                <Task key={task.id} task={task} setTaskDone={setTaskDone} editTask={editTask} deleteTask={deleteTask}/>
-            )
-        return <></>
-    } )
+    let completedTasts = useMemo(() => {
+        return tasks.filter((task) => {
+            return (task.status === "done")
+        })
+    }, [tasks])
+    let notCompletedTasts = useMemo(() => {
+        return tasks.filter((task) => {
+            return (task.status === "todo")
+        })
+    }, [tasks])
+
+    let tasksToBeRendred = tasks
+    if (status === "done")
+        tasksToBeRendred = completedTasts
+    if (status === "todo")
+        tasksToBeRendred = notCompletedTasts
+
+    let JsxTasksList = tasksToBeRendred.map((task) => {
+        // console.log("fillTasksList")
+        return (
+            <Task key={task.id} task={task} setTaskDone={setTaskDone} editTask={editTask} deleteTask={deleteTask}/>
+        )
+    })
 
     function addTask(){
         if (taskTitle){
@@ -139,6 +155,7 @@ export function TasksList({status}){
             setTasks(updatedTasks);
             setTaskTitle("")
             localStorage.setItem("tasks", JSON.stringify(updatedTasks));
+            showToast("تمت إضافة المهمة بنجاح")
         }
     }
 
@@ -146,7 +163,7 @@ export function TasksList({status}){
     return (
     <div dir='rtl' style={{width: "100%",}} >
         <Stack spacing={3} style={{}} className="tasksContainer" >
-            {tastsList}
+            {JsxTasksList}
         </Stack>
         <Grid container spacing={4} style={{marginTop: '20px'}}>
             <Grid size={8}  style={{borderRadius: '16px'}}>

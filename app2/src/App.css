@@ -8,14 +8,14 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  min-height: 60px !important;
   overflow: hidden;
 }
 
 
 .navbrBtn {
   width: 110px;
-  /* color: rgb(133, 133, 133) !important; */
-  height: 70px !important;
+  height: 60px !important;
   border-right: 1px solid !important;
   border-radius: 0px !important;
   text-decoration: none !important;
@@ -24,7 +24,6 @@
   font-weight: 600 !important;
 }
 .navbrBtn:hover {
-  /* color: rgba(255, 166, 2) !important; */
   background-color: rgb(207, 207, 207) !important;
 }
 .navbrBtn.Mui-selected {
@@ -40,6 +39,7 @@
   height: 100%;
   min-height: 100vh;
   background-color: rgb(71, 71, 71);
+  min-width: 340px;
 }
 
 .btn {
@@ -60,14 +60,14 @@
 
 .todoContainer {
   background-color: teal;
-  padding: 15px;
+  padding: 5px;
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 50%;
   gap: 25px;
   border-radius: 15px;
-  min-width: 400px;
+  min-width: 320px;
   max-width: 800px;
   margin: auto;
   height: fit-content;
@@ -79,7 +79,7 @@
 .tasksContainer {
   padding-left: 2%;
   padding-right: 3%;
-  max-height: 60vh;
+  max-height: 45vh;
   overflow-y: scroll;
   overflow-x: hidden;
 }
@@ -118,10 +118,29 @@
   box-shadow: 0px 7px 10px rgba(0, 0, 0, 0.5);
 }
 
-.snkBar{
-  background-color: green !important;
+
+
+.MuiSnackbar-root {
+  width: fit-content;
+}
+.snkBarContent{
+  width: 100%;
+  min-width: fit-content !important;
+  background-color: rgba(91, 187, 27, 0.842) !important;
   font-size: 25px !important;
   text-align: center !important;
+  padding: 6px 8px !important;
+}
+.MuiSnackbarContent-action {
+  display: flex;
+  justify-content: end;
+  padding: 0px !important;
+  margin: 0 !important;
+  margin-right: 5px !important;
+}
+.snkBarIcon {
+  padding: 0px !important;
+  justify-content: end !important;
 }
 
 .poperContainer {
@@ -131,6 +150,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  min-width: 340px;
 }
 .poperContent {
   display: flex;
@@ -139,7 +159,7 @@
   background-color: white;
   border-radius: 15px;
   width: 45%;
-  min-width: 400px;
+  min-width: 250px;
   padding: 20px;
 }
 

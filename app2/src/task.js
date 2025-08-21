@@ -10,26 +10,26 @@ import { useTheme } from "@mui/material/styles";
 
 export function Task({task, setTaskDone, editTask, deleteTask}){
     // let task = useContext(taskContext);
-    let bgColor =  task.status === "done" ? 'green': 'white';
+    let bgColor =  task.status === "done" ? '#8bc34a': 'white';
     let textColor =  task.status === "done" ? 'white': '#8bc34a';
 
     const primary = useTheme().palette.primary;
 
-    return (
+    return ( /*Use Gard Compenent ftrom Mui*/
         <div className='task' style={{ backgroundColor: primary.dark, color: task.status === "done"? "rgb(113, 194, 20)" : "rgb(224, 224, 224)"}}>
             <Grid  key={task.id} container spacing={2} className='content'
             sx={{borderRadius: '5px', width: '100%'}}
             >
-                <Grid  size={8} spacing={4}>
-                    <Grid  size={12} style={{fontSize: "25px",
-                       }}>
+                <Grid  size={7} spacing={4}>
+                    <Grid  size={12} className="taskTitle" style={{fontSize: "25px",
+                        overflow: 'hidden'}}>
                         {task.name} 
                     </Grid>
-                    <Grid  size={12} >
+                    <Grid  size={12} className="taskDetils">
                         <h4 style={{paddingTop: "4px", margin: '0px'}}>{task.detils}</h4>
                     </Grid>
                 </Grid>
-                <Grid display="flex" alignItems="center" justifyContent="flex-end" gap='8px' size={4}>
+                <Grid display="flex" alignItems="center" justifyContent="flex-end" gap='8px' size={5}>
                     <Button onClick={() => setTaskDone(task.id)} className="btn done" 
                         style={{backgroundColor: bgColor, color: textColor, border: '2px solid #8bc34a'}}>
                         <CheckOutlinedIcon ></CheckOutlinedIcon >

@@ -1,4 +1,5 @@
 import './App.css';
+import './media.css';
 import { TodoBord } from './todoBord.js';
 import { handleClickContext } from './taskContext.js'; 
 import { useState } from 'react';
@@ -12,7 +13,7 @@ function App() {
 
   const [open, setOpen] = useState(false);
   let [message, setMessage] = useState('');
-  const informHandleClick = (msg) => {
+  const showToast = (msg) => {
       setOpen((o) => {return !o});
       setMessage(msg);
     };
@@ -28,7 +29,7 @@ function App() {
   };
   return (
     <div className="parent" dir='rtl'>
-      <handleClickContext.Provider value={{infoHandelClick: informHandleClick, popUpHandle :popUpHandleClick}}>
+      <handleClickContext.Provider value={{showToast: showToast, popUpHandle :popUpHandleClick}}>
         <TodoBord />
 
         <PopUp open={popOpen}>{popContent}</PopUp>

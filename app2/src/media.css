@@ -1,0 +1,77 @@
+
+/* ----------------1000px----------------- */
+@media screen and (max-width: 1000px) {
+    .btn {
+        min-width: 35px !important;
+        width: 35px !important;
+        height: 35px !important;
+    }
+    .todoContainer {
+        width: 80%;
+    }
+    .poperContent {
+        width: 70%;
+    }
+}
+
+
+
+/* ----------------600px----------------- */
+@media screen and (max-width: 600px) {
+    /* nvBar */
+    .nvbar {
+        /* border: 1px solid red; */
+        min-height: 50px !important;
+        height: 50px !important;
+    }
+    .navbrBtn {
+        font-size: 15px !important;
+        width: 90px;
+        height: 50px !important;
+    }
+
+    .btn {
+        min-width: 30px !important;
+        width: 30px !important;
+        height: 30px !important;
+    }
+
+    /* tasksList */
+    .todoContainer {
+        width: 80%;
+    }
+    .task .content .MuiGrid-root{
+    /* border: 1px solid red; */
+    }
+    .task .content .taskTitle {
+        font-size: 20px !important;
+    }
+    .task .content .taskDetils {
+        font-size: 13px !important;
+    }
+
+    /* snackBar */
+    .snkBarContent {
+        font-size: 20px !important;
+    }
+    .snkBarIcon {
+        font-size: 28px !important;
+    }
+
+    /* PopUp/Poper */
+    .poperContent .MuiInputBase-root, .poperContent  .MuiLabelBase-root{
+        font-size: 18px !important;
+    }
+    .poperContent h2 {
+        font-size: 20px !important;
+    }
+}
+
+
+/* ----------------350px----------------- */
+@media screen and (max-width: 350px) {
+    .todoContainer {
+        padding: 5px;
+        width: 90%;
+    }
+}
