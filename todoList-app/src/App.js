@@ -1,7 +1,7 @@
 import './App.css';
 import './media.css';
 import { TodoBord } from './todoBord.js';
-import { handleClickContext } from './taskContext.js'; 
+import { handleClickContext } from './contexts/taskContext.js'; 
 import { useState } from 'react';
 import { SnackBar } from './snackbar.js';
 import { PopUp } from './popUp.js';
@@ -16,7 +16,7 @@ function App() {
   const showToast = (msg) => {
       setOpen((o) => {return !o});
       setMessage(msg);
-    };
+  };
   const handleClose = () => {
     setOpen((o) => {return !o});
   }

@@ -21,6 +21,8 @@
     /* nvBar */
     .nvbar {
         /* border: 1px solid red; */
+        margin-top: 10px;
+        margin-bottom: 15px;
         min-height: 50px !important;
         height: 50px !important;
     }
@@ -38,16 +40,24 @@
 
     /* tasksList */
     .todoContainer {
+        /* gap: 12px; */
         width: 80%;
     }
-    .task .content .MuiGrid-root{
-    /* border: 1px solid red; */
+    .todoContainer h1 {
+        height: 45px !important;
+        font-size: 40px !important;
+    }
+    .tasksContainer {
+        max-height: 40vh;
     }
     .task .content .taskTitle {
         font-size: 20px !important;
     }
     .task .content .taskDetils {
         font-size: 13px !important;
+    }
+    .MuiInputBase-root, .addTaskTitleBtn {
+        font-size: 20px !important;
     }
 
     /* snackBar */
@@ -68,10 +78,38 @@
 }
 
 
+/* ----------------460px----------------- */
+@media screen and (max-width: 460px) {
+    .task .content .taskTitle {
+        font-size: 16px !important;
+    }
+    .task .content .taskDetils {
+        font-size: 10px !important;
+    }
+    .MuiInputBase-root, .addTaskTitleBtn {
+        font-size: 16px !important;
+    }
+}
+/* ----------------450px----------------- */
+
+    
+
+
 /* ----------------350px----------------- */
 @media screen and (max-width: 350px) {
     .todoContainer {
         padding: 5px;
         width: 90%;
+        /* gap: 8px; */
+    }
+    .todoContainer h1 {
+        height: 40px !important;
+        font-size: 35px !important;
+    }
+    .snkBarContent {
+        font-size: 18px !important;
+    }
+    .snkBarIcon {
+        font-size: 26px !important;
     }
 }
