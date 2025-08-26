@@ -25,6 +25,8 @@
 ### Stack Used
 - #### React.js
 
+### App Demo
+![App Demo](./weather-app/example.gif)
 <!-- ### Deployment
 - #### You can view the live project here: [project link](https://mylisttasks.netlify.app/) -->
 

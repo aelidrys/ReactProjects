@@ -1,0 +1,77 @@
+
+
+@media screen and (max-width: 600px) {
+    .weatherCard {
+        max-width: 400px !important;
+    }
+    .parent {
+        max-width: 400px !important;
+    }
+    .MuiButtonBase-root, input {
+        font-size: 15px !important;
+    }
+    .MuiSvgIcon-root {
+        font-size: 25px !important;
+    }
+    .cloud {
+        font-size: 150px !important;
+    }
+    h1 {
+        font-size: 45px !important;
+    }
+    .MuiPaper-root {
+        font-size: 15px !important;
+    }
+        .exTempDiv {
+        gap: 6px !important;
+        font-size: 15px !important;
+    }
+    .exTemp {
+        font-size: 15px !important;
+        margin: 0;
+
+    }
+}
+
+@media screen and (max-width: 450px) {
+    .weatherCard {
+        max-width: 320px !important;
+    }
+    .parent {
+        max-width: 320px !important;
+    }
+    .MuiButtonBase-root, input {
+        font-size: 15px !important;
+    }
+    .MuiSvgIcon-root {
+        font-size: 25px !important;
+    }
+    .cloud {
+        font-size: 100px !important;
+    }
+    h1 {
+        font-size: 35px !important;
+    }
+    .date {
+        font-size: 13px;
+    }
+    .temp {
+        font-size: 40px !important;
+    }
+    h4 {
+        font-size: 13px !important;
+    }
+    .exTempDiv {
+        gap: 4px !important;
+        font-size: 12px !important;
+    }
+    .exTemp {
+        font-size: 12px !important;
+        margin: 0;
+
+    }
+    .searchBar {
+        width: 200px !important;
+        margin-left: 10px;
+    }
+}

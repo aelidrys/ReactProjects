@@ -12,8 +12,18 @@
 }
 
 input {
-  background-color: rgba(255, 228, 196, 0.685) !important;
+  background-color: transparent !important;
+  color: white !important;
   padding: 10px !important;
   border-radius: 5px;
   font-size: 20px !important;
+}
+
+.MuiSnackbar-root {
+  width: fit-content !important;
+}
+.MuiPaper-root {
+  min-width: fit-content !important;
+  font-size: 20px !important;
+  background-color: rgb(233, 73, 52) !important;
 }
