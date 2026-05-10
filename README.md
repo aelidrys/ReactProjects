@@ -30,8 +30,8 @@
 
 ### App Demo
 ![App Demo](./weather-app/example.gif)
-<!-- ### Deployment
-- #### You can view the live project here: [project link](https://mylisttasks.netlify.app/) -->
+### Deployment
+- #### You can view the live project here: [project link](https://mylisttasks.netlify.app/)
 
 ### Resourcs
 - #### Link of react course in youtube [كورس رياكت | React JS Course](https://youtube.com/playlist?list=PLYyqC4bNbCIdSZ-JayMLl4WO2Cr995vyS&si=JpCT7806543MWioR)
